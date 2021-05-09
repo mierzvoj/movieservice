@@ -15,5 +15,11 @@ public class MovieService {
         return movieList;
     }
 
+    public List<Movie> getMovieList() {
+        return movieList;
+    }
 
+    public void setMovieList(List<Movie> movieList) {
+        this.movieList = movieList;
+    }
 }
