@@ -1,7 +1,9 @@
 package com.example.pjatk.movieservice.service;
 
-public class EnumCat {
-    public enum movieCat{
-        horror, komedia, wojenny;
-    }
+public enum EnumCat {
+
+    horror,
+    komedia,
+    wojenny
+
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class MovieService {
 
-    List<Movie> movieList = Arrays.asList(new Movie(1L, "mv1", "scary"), new Movie(2L, "mv2", "scary"));
+    List<Movie> movieList = Arrays.asList(new Movie(1L, "mv1", EnumCat.komedia), new Movie(2L, "mv2", EnumCat.wojenny));
 
     public List<Movie> listMovies() {
         return movieList;

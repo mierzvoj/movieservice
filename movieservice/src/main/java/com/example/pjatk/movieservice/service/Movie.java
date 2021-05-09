@@ -4,13 +4,12 @@ package com.example.pjatk.movieservice.service;
 public class Movie {
     private Long movieId;
     private String movieTitle;
-    private String movieCategory;
+    private EnumCat category;
 
-    public Movie(Long movieId, String movieTitle, String movieCategory) {
+    public Movie(Long movieId, String movieTitle, EnumCat movieCategory) {
         this.movieId = movieId;
         this.movieTitle = movieTitle;
-        this.movieCategory = movieCategory;
-    }
+           }
 
     public Movie() {
     }
@@ -31,11 +30,5 @@ public class Movie {
         this.movieTitle = movieTitle;
     }
 
-    public String getMovieCategory() {
-        return movieCategory;
-    }
 
-    public void setMovieCategory(String movieCategory) {
-        this.movieCategory = movieCategory;
-    }
 }
