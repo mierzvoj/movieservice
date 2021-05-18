@@ -31,8 +31,10 @@ public class MovieService {
         return movie;
     }
 
-    public Movie updateMovie(Movie movie){
-        movieList.add(movie);
+    public Optional<Movie> updateMovie(Long id, Movie movieToUpdate){
+        Optional <Movie> movie = movieList.stream().filter(m->m.getMovieId().equals(id)).findFirst();
+        movie.get().setMovieCategory(movieToUpdate.getMovieCategory());
+        movie.get().setMovieTitle(movieToUpdate.getMovieTitle());
         return movie;
     }
 
