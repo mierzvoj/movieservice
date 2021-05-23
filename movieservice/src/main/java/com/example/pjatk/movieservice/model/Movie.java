@@ -1,13 +1,18 @@
 package com.example.pjatk.movieservice.model;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name="movie")
 public class Movie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String movieTitle;
+    @Enumerated(EnumType.STRING)
     private EnumCat movieCategory;
 
-    public Movie(Long id, String movieTitle, EnumCat movieCategory) {
-        this.id = id;
+    public Movie(String movieTitle, EnumCat movieCategory) {
         this.movieTitle = movieTitle;
         this.movieCategory = movieCategory;
     }
@@ -17,10 +22,6 @@ public class Movie {
 
     public Long getMovieId() {
         return id;
-    }
-
-    public void setMovieId(Long id) {
-        this.id = id;
     }
 
     public String getMovieTitle() {

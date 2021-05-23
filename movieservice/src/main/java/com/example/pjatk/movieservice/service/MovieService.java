@@ -2,6 +2,7 @@ package com.example.pjatk.movieservice.service;
 
 import com.example.pjatk.movieservice.model.EnumCat;
 import com.example.pjatk.movieservice.model.Movie;
+import com.example.pjatk.movieservice.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,33 +13,32 @@ import java.util.stream.Collectors;
 
 @Service
 public class MovieService {
+    private final MovieRepository movieRepository;
 
-    //List<Movie> movieList = Arrays.asList(new Movie(1L, "mv1", EnumCat.comedy), new Movie(2L, "mv2", EnumCat.war));
-
-     List <Movie> movieList = new ArrayList<>();
-
-    public List<Movie> getMovieList() {
-        return movieList;
+    public MovieService(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
     }
 
+    public List<Movie> findAll() {
+        return movieRepository.findAll();
+    }
 
     public Movie getMovieById(Long id) {
-        return movieList.stream().filter(a -> a.getMovieId() == id).collect(Collectors.toList()).get(0);
+        return movieRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 
     public Movie saveMovie(Movie movie) {
-        movieList.add(movie);
+        movieRepository.save(movie);
         return movie;
     }
 
-    public Optional<Movie> updateMovie(Long id, Movie movieToUpdate){
-        Optional <Movie> movie = movieList.stream().filter(m->m.getMovieId().equals(id)).findFirst();
-        movie.get().setMovieCategory(movieToUpdate.getMovieCategory());
-        movie.get().setMovieTitle(movieToUpdate.getMovieTitle());
-        return movie;
+    public Movie updateMovie(Long id, Movie movie) {
+        if (movieRepository.existsById(id)) {
+        }
+        return movieRepository.save(movie);
     }
 
-    public void deleteMovie(Long id){
-        movieList.removeIf(e -> e.getMovieId().equals(id));;
+    public void deleteMovie(Long id) {
+        movieRepository.deleteById(id);
     }
 }

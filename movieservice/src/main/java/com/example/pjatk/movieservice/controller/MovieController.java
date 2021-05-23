@@ -26,7 +26,7 @@ public class MovieController {
 
     @GetMapping("")
     public ResponseEntity<List<Movie>> findAll() {
-        return ResponseEntity.ok(movieService.getMovieList());
+        return ResponseEntity.ok(movieService.findAll());
     }
 
     @GetMapping("/{id}")
@@ -40,7 +40,7 @@ public class MovieController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity <Optional<Movie>> updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
+    public ResponseEntity <Movie> updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
         return ResponseEntity.ok(movieService.updateMovie(id, movie));
     }
 
