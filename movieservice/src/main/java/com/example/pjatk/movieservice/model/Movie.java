@@ -46,8 +46,8 @@ public class Movie {
         return isAvaliable;
     }
 
-    public void setAvaliable(boolean avaliable) {
-        isAvaliable = avaliable;
+    public void setAvaliable() {
+        isAvaliable = true;
     }
 
 }

@@ -25,8 +25,8 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-    public Movie getMovieById(Long id) {
-        return movieRepository.findById(id).orElseThrow(RuntimeException::new);
+    public Optional<Movie> getMovieById(Long id) {
+        return movieRepository.findMovieByid(id);
     }
 
     public Movie saveMovie(Movie movie) {
@@ -34,9 +34,8 @@ public class MovieService {
         return movie;
     }
 
-
     public Optional<Movie> updateMovie(Long id, Movie movieToUpdate) {
-        Optional<Movie> movie = movieRepository.findAll().stream().filter(m -> m.getMovieId().equals(id)).findFirst();
+        Optional<Movie> movie = movieRepository.streamAllByid(id).stream().findFirst();
         if (movie.isPresent()) {
             movie.get().setMovieCategory(movieToUpdate.getMovieCategory());
             movie.get().setMovieTitle(movieToUpdate.getMovieTitle());
@@ -47,9 +46,9 @@ public class MovieService {
     }
 
     public Optional<Movie> avalUpdateMovie(Long id) {
-        Optional<Movie> movie = movieRepository.findAll().stream().filter(m -> m.getMovieId().equals(id)).findFirst();
+        Optional<Movie> movie = movieRepository.streamAllByid(id).stream().findFirst();
         if (movie.isPresent()) {
-            movie.get().setAvaliable(true);
+            movie.get().setAvaliable();
             return movie;
         }
         throw new ResponseStatusException(
