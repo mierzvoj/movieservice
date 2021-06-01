@@ -40,7 +40,7 @@ public class MovieController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity <Movie> updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
+    public ResponseEntity <Optional<Movie>> updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
         return ResponseEntity.ok(movieService.updateMovie(id, movie));
     }
 
@@ -48,6 +48,11 @@ public class MovieController {
     public ResponseEntity<Void> deleteMovie(@PathVariable Long id) {
         movieService.deleteMovie(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/aval/{id}")
+    public ResponseEntity <Optional<Movie>> avalUpdateMovie(@PathVariable Long id) {
+        return ResponseEntity.ok(movieService.avalUpdateMovie(id));
     }
 
 }

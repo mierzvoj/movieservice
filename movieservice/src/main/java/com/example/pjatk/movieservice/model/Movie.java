@@ -9,6 +9,8 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String movieTitle;
+    @Column(nullable = false, columnDefinition = "BIT", length = 1)
+    private boolean isAvaliable;
     @Enumerated(EnumType.STRING)
     private EnumCat movieCategory;
 
@@ -39,4 +41,13 @@ public class Movie {
     public void setMovieCategory(EnumCat movieCategory) {
         this.movieCategory = movieCategory;
     }
+
+    public boolean isAvaliable() {
+        return isAvaliable;
+    }
+
+    public void setAvaliable(boolean avaliable) {
+        isAvaliable = avaliable;
+    }
+
 }
