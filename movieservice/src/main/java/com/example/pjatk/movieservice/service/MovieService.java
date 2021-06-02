@@ -36,10 +36,8 @@ public class MovieService {
 
     public Movie updateMovie(Long id, Movie movie) {
         Movie movieToUpdate = movieRepository.findMovieByid(id);
-        if (movie.getMovieTitle() != null) {
+        if (movie.getMovieTitle() != null || movie.getMovieCategory() != null) {
             movieToUpdate.setMovieTitle(movie.getMovieTitle());
-        }
-        if (movie.getMovieCategory() != null) {
             movieToUpdate.setMovieCategory(movie.getMovieCategory());
         }
         return saveMovie(movieToUpdate);
