@@ -25,7 +25,7 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-    public Optional<Movie> getMovieById(Long id) {
+    public Movie getMovieById(Long id) {
         return movieRepository.findMovieByid(id);
     }
 
@@ -34,25 +34,23 @@ public class MovieService {
         return movie;
     }
 
-    public Optional<Movie> updateMovie(Long id, Movie movieToUpdate) {
-        Optional<Movie> movie = movieRepository.streamAllByid(id).stream().findFirst();
-        if (movie.isPresent()) {
-            movie.get().setMovieCategory(movieToUpdate.getMovieCategory());
-            movie.get().setMovieTitle(movieToUpdate.getMovieTitle());
-            return movie;
+    public Movie updateMovie(Long id, Movie movie) {
+        Movie movieToUpdate = movieRepository.findMovieByid(id);
+        if (movie.getMovieTitle() != null) {
+            movieToUpdate.setMovieTitle(movie.getMovieTitle());
         }
-        throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND);
+        if (movie.getMovieCategory() != null) {
+            movieToUpdate.setMovieCategory(movie.getMovieCategory());
+        }
+        return saveMovie(movieToUpdate);
     }
 
-    public Optional<Movie> avalUpdateMovie(Long id) {
-        Optional<Movie> movie = movieRepository.streamAllByid(id).stream().findFirst();
-        if (movie.isPresent()) {
-            movie.get().setAvaliable();
-            return movie;
+    public Movie avalUpdateMovie(Long id) {
+        Movie movie = movieRepository.findMovieByid(id);
+        if (movie.getMovieId() != null) {
+            movie.setAvaliable();
         }
-        throw new ResponseStatusException(
-                HttpStatus.NOT_FOUND);
+        return saveMovie(movie);
     }
 
     public void deleteMovie(Long id) {

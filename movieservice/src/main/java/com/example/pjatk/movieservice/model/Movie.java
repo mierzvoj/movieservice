@@ -3,7 +3,7 @@ package com.example.pjatk.movieservice.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="movie")
+@Table(name = "movie")
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

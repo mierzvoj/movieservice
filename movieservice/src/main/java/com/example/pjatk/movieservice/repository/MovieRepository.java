@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-    public interface MovieRepository extends JpaRepository<Movie, Long> {
+public interface MovieRepository extends JpaRepository<Movie, Long> {
+    Movie findMovieByid(Long id);
 
-    Optional<Movie> findMovieByid(Long id);
     Optional<Movie> streamAllByid(Long id);
 
 

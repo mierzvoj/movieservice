@@ -30,7 +30,7 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity <Optional<Movie>> findById(@PathVariable Long id) {
+    public ResponseEntity<Movie> findById(@PathVariable Long id) {
         return ResponseEntity.ok(movieService.getMovieById(id));
     }
 
@@ -40,7 +40,7 @@ public class MovieController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Optional<Movie>> updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
+    public ResponseEntity<Movie> updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
         return ResponseEntity.ok(movieService.updateMovie(id, movie));
     }
 
@@ -51,7 +51,7 @@ public class MovieController {
     }
 
     @PutMapping("/aval/{id}")
-    public ResponseEntity<Optional<Movie>> avalUpdateMovie(@PathVariable Long id) {
+    public ResponseEntity<Movie> avalUpdateMovie(@PathVariable Long id) {
         return ResponseEntity.ok(movieService.avalUpdateMovie(id));
     }
 
